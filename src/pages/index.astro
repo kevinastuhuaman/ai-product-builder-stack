@@ -1,0 +1,368 @@
+---
+import { ArrowUpRight, Braces, Check, Download, ExternalLink, Funnel, GitBranch, Search, ShieldCheck, X } from '@lucide/astro';
+import BrandMark from '../components/BrandMark.astro';
+import { categories, evidenceUpdated, projects, states, systems, tools } from '../data/stack';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+const title = 'AI Product Builder Stack | Kevin Astuhuaman';
+const description = 'A verified, interactive map of the AI, infrastructure, analytics, voice, and product tools Kevin Astuhuaman has used to ship real systems.';
+const canonical = 'https://kevinastuhuaman.github.io/ai-product-builder-stack/';
+const projectJson = {
+  name: 'AI Product Builder Stack',
+  author: 'Kevin Astuhuaman',
+  updated: evidenceUpdated,
+  tools: tools.length,
+  categories: categories.length,
+  states: Object.keys(states),
+  url: canonical,
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Kevin Astuhuaman" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${canonical}social-preview.png`} />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${canonical}social-preview.png`} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'CreativeWork', ...projectJson })}></script>
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#explorer">Skip to stack explorer</a>
+
+    <header class="topbar">
+      <a class="identity" href="https://portfolio.kevinastuhuaman.com">
+        <span class="identity-mark">KA</span>
+        <span>Kevin Astuhuaman</span>
+      </a>
+      <nav aria-label="Project links">
+        <a href={`${base}stack.json`}>JSON</a>
+        <a href="https://github.com/kevinastuhuaman/ai-product-builder-stack">GitHub <ExternalLink size={14} stroke-width={1.8} /></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">A verified builder map</p>
+          <h1 id="page-title">The tools are only interesting when you can see the system they shipped.</h1>
+          <p class="lede">An evidence-backed view of the models, infrastructure, browser agents, analytics, voice systems, and product tooling I have used across Trackly, Close AI, and public labs.</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#explorer">Explore the stack <ArrowUpRight size={17} stroke-width={2} /></a>
+            <a class="secondary-action" href={`${base}stack.json`} download>Download the evidence <Download size={16} stroke-width={1.9} /></a>
+          </div>
+        </div>
+        <div class="hero-proof" aria-label="Map summary">
+          <div class="summary-number">
+            <strong>{tools.length}</strong>
+            <span>verified tools and patterns</span>
+          </div>
+          <div class="summary-grid">
+            <span><strong>{categories.length}</strong> capability layers</span>
+            <span><strong>{systems.length}</strong> system flows</span>
+            <span><strong>4</strong> evidence states</span>
+            <span><strong>0</strong> unverified logos</span>
+          </div>
+          <p><ShieldCheck size={16} stroke-width={2} /> Updated {evidenceUpdated}. Sensitive topology, credentials, and employer IP are excluded.</p>
+        </div>
+      </section>
+
+      <section class="principles" aria-label="How to read this map">
+        <div>
+          <span>01</span>
+          <h2>Evidence before logos</h2>
+          <p>Every entry names the implementation or operating proof behind it.</p>
+        </div>
+        <div>
+          <span>02</span>
+          <h2>Current state matters</h2>
+          <p>Active infrastructure is separated from prototypes and historical systems.</p>
+        </div>
+        <div>
+          <span>03</span>
+          <h2>Systems beat shopping lists</h2>
+          <p>The flow view shows how tools combine into a product outcome.</p>
+        </div>
+      </section>
+
+      <section id="explorer" class="explorer" aria-labelledby="explorer-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Interactive evidence</p>
+            <h2 id="explorer-title">Builder stack explorer</h2>
+          </div>
+          <p id="result-count" aria-live="polite">Showing all {tools.length} entries</p>
+        </div>
+
+        <div class="view-switcher" role="tablist" aria-label="Explorer view">
+          <button type="button" role="tab" aria-selected="true" aria-controls="stack-view" id="stack-tab" data-view="stack">
+            <Braces size={17} stroke-width={1.9} /> Stack
+          </button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="systems-view" id="systems-tab" data-view="systems">
+            <GitBranch size={17} stroke-width={1.9} /> Systems
+          </button>
+        </div>
+
+        <div class="filterbar" id="stack-filters">
+          <label class="search-field">
+            <Search size={17} stroke-width={1.9} />
+            <span class="sr-only">Search tools and evidence</span>
+            <input id="tool-search" type="search" placeholder="Search tools, outcomes, or evidence" autocomplete="off" />
+            <button id="clear-search" class="icon-button" type="button" aria-label="Clear search" hidden><X size={16} /></button>
+          </label>
+          <label>
+            <Funnel size={16} stroke-width={1.9} />
+            <span class="sr-only">Filter by project</span>
+            <select id="project-filter">
+              <option value="all">All projects</option>
+              {projects.map((project) => <option value={project.id}>{project.label}</option>)}
+            </select>
+          </label>
+          <label>
+            <ShieldCheck size={16} stroke-width={1.9} />
+            <span class="sr-only">Filter by evidence state</span>
+            <select id="state-filter">
+              <option value="all">All evidence states</option>
+              {Object.entries(states).map(([id, state]) => <option value={id}>{state.label}</option>)}
+            </select>
+          </label>
+        </div>
+
+        <div id="stack-view" role="tabpanel" aria-labelledby="stack-tab">
+          <div class="legend" aria-label="Evidence states">
+            {Object.entries(states).map(([id, state]) => (
+              <div>
+                <span class={`state-dot state-${id}`}></span>
+                <strong>{state.label}</strong>
+                <span>{state.description}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="category-list">
+            {categories.map((category) => {
+              const categoryTools = tools.filter((tool) => tool.category === category.id);
+              return (
+                <section class="category-section" data-category={category.id}>
+                  <header>
+                    <div>
+                      <p>{category.eyebrow}</p>
+                      <h3>{category.label}</h3>
+                    </div>
+                    <span>{categoryTools.length}</span>
+                    <p>{category.description}</p>
+                  </header>
+                  <div class="tool-grid">
+                    {categoryTools.map((tool) => (
+                      <button
+                        class="tool-card"
+                        type="button"
+                        data-tool-id={tool.id}
+                        data-projects={tool.projects.join(' ')}
+                        data-state={tool.state}
+                        data-search={`${tool.name} ${tool.summary} ${tool.proof}`.toLowerCase()}
+                        aria-haspopup="dialog"
+                      >
+                        <BrandMark name={tool.name} icon={tool.icon} color={tool.color} />
+                        <span class="tool-card-copy">
+                          <span class="tool-name">{tool.name}</span>
+                          <span class="tool-summary">{tool.summary}</span>
+                        </span>
+                        <span class={`state-label state-${tool.state}`}>{states[tool.state].label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
+          </div>
+          <div id="empty-state" class="empty-state" hidden>
+            <Search size={24} stroke-width={1.6} />
+            <h3>No evidence matches those filters.</h3>
+            <button type="button" id="reset-filters">Reset filters</button>
+          </div>
+        </div>
+
+        <div id="systems-view" role="tabpanel" aria-labelledby="systems-tab" hidden>
+          <div class="systems-intro">
+            <p>The map becomes more useful when the tools resolve into an end-to-end product path.</p>
+          </div>
+          <div class="system-list">
+            {systems.map((system, index) => (
+              <article class="system-flow">
+                <header>
+                  <span>0{index + 1}</span>
+                  <div>
+                    <h3>{system.label}</h3>
+                    <p>{system.outcome}</p>
+                  </div>
+                </header>
+                <ol>
+                  {system.steps.map((step, stepIndex) => (
+                    <li>
+                      <span>{stepIndex + 1}</span>
+                      <strong>{step}</strong>
+                      {stepIndex < system.steps.length - 1 && <span class="flow-connector" aria-hidden="true"></span>}
+                    </li>
+                  ))}
+                </ol>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="method" aria-labelledby="method-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Trust model</p>
+            <h2 id="method-title">What qualifies for the map</h2>
+          </div>
+        </div>
+        <div class="method-grid">
+          <div>
+            <Check size={20} stroke-width={2} />
+            <h3>Implementation evidence</h3>
+            <p>A dependency, integration, deployment path, test, public artifact, or verified operating workflow.</p>
+          </div>
+          <div>
+            <Check size={20} stroke-width={2} />
+            <h3>Honest lifecycle state</h3>
+            <p>Historical and prototype work stays visible without being mislabeled as current production.</p>
+          </div>
+          <div>
+            <Check size={20} stroke-width={2} />
+            <h3>Public-safe abstraction</h3>
+            <p>The map explains product and architecture judgment without publishing private topology, data, or code.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Designed and built by Kevin Astuhuaman.</p>
+      <div>
+        <a href="https://portfolio.kevinastuhuaman.com">Portfolio</a>
+        <a href="https://github.com/kevinastuhuaman">GitHub</a>
+        <a href={`${base}llms.txt`}>LLM profile</a>
+      </div>
+    </footer>
+
+    <dialog id="tool-dialog" aria-labelledby="dialog-title">
+      <button class="dialog-close icon-button" type="button" aria-label="Close details"><X size={19} /></button>
+      <div id="dialog-mark"></div>
+      <p id="dialog-state" class="dialog-state"></p>
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-summary" class="dialog-summary"></p>
+      <div class="dialog-proof">
+        <span>Implementation evidence</span>
+        <p id="dialog-proof"></p>
+      </div>
+      <div id="dialog-projects" class="dialog-projects"></div>
+      <a id="dialog-link" class="dialog-link" href="#" target="_blank" rel="noreferrer">Open supporting source <ArrowUpRight size={16} /></a>
+    </dialog>
+
+    <script is:inline define:vars={{ toolData: tools, projectData: projects, stateData: states }}>
+      const cards = Array.from(document.querySelectorAll('.tool-card'));
+      const categorySections = Array.from(document.querySelectorAll('.category-section'));
+      const searchInput = document.querySelector('#tool-search');
+      const clearSearch = document.querySelector('#clear-search');
+      const projectFilter = document.querySelector('#project-filter');
+      const stateFilter = document.querySelector('#state-filter');
+      const resultCount = document.querySelector('#result-count');
+      const emptyState = document.querySelector('#empty-state');
+      const resetFilters = document.querySelector('#reset-filters');
+      const dialog = document.querySelector('#tool-dialog');
+
+      const applyFilters = () => {
+        const query = searchInput.value.trim().toLowerCase();
+        const project = projectFilter.value;
+        const state = stateFilter.value;
+        let visible = 0;
+
+        cards.forEach((card) => {
+          const matchesQuery = !query || card.dataset.search.includes(query);
+          const matchesProject = project === 'all' || card.dataset.projects.split(' ').includes(project);
+          const matchesState = state === 'all' || card.dataset.state === state;
+          const show = matchesQuery && matchesProject && matchesState;
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+
+        categorySections.forEach((section) => {
+          section.hidden = !section.querySelector('.tool-card:not([hidden])');
+        });
+
+        resultCount.textContent = visible === toolData.length ? `Showing all ${visible} entries` : `Showing ${visible} of ${toolData.length} entries`;
+        emptyState.hidden = visible !== 0;
+        clearSearch.hidden = !query;
+      };
+
+      const reset = () => {
+        searchInput.value = '';
+        projectFilter.value = 'all';
+        stateFilter.value = 'all';
+        applyFilters();
+        searchInput.focus();
+      };
+
+      searchInput.addEventListener('input', applyFilters);
+      projectFilter.addEventListener('change', applyFilters);
+      stateFilter.addEventListener('change', applyFilters);
+      clearSearch.addEventListener('click', () => {
+        searchInput.value = '';
+        applyFilters();
+        searchInput.focus();
+      });
+      resetFilters.addEventListener('click', reset);
+
+      document.querySelectorAll('[role="tab"]').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const view = tab.dataset.view;
+          document.querySelectorAll('[role="tab"]').forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+          document.querySelector('#stack-view').hidden = view !== 'stack';
+          document.querySelector('#systems-view').hidden = view !== 'systems';
+          document.querySelector('#stack-filters').hidden = view !== 'stack';
+          resultCount.hidden = view !== 'stack';
+        });
+      });
+
+      const openDialog = (toolId) => {
+        const tool = toolData.find((entry) => entry.id === toolId);
+        if (!tool) return;
+        const state = stateData[tool.state];
+        document.querySelector('#dialog-state').textContent = state.label;
+        document.querySelector('#dialog-state').className = `dialog-state state-${tool.state}`;
+        document.querySelector('#dialog-title').textContent = tool.name;
+        document.querySelector('#dialog-summary').textContent = tool.summary;
+        document.querySelector('#dialog-proof').textContent = tool.proof;
+        const projectLabels = tool.projects.map((id) => projectData.find((project) => project.id === id)?.label).filter(Boolean);
+        document.querySelector('#dialog-projects').innerHTML = projectLabels.map((label) => `<span>${label}</span>`).join('');
+        document.querySelector('#dialog-link').href = tool.url;
+        document.querySelector('#dialog-mark').textContent = tool.name.split(/\s|\//).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
+        document.querySelector('#dialog-mark').style.setProperty('--dialog-brand', tool.color);
+        dialog.showModal();
+      };
+
+      cards.forEach((card) => card.addEventListener('click', () => openDialog(card.dataset.toolId)));
+      dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    </script>
+  </body>
+</html>

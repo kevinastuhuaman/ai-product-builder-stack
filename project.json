@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "name": "AI Product Builder Stack",
+  "description": "An interactive, evidence-backed map of tools Kevin Astuhuaman has used to ship and operate AI products.",
+  "author": "Kevin Astuhuaman",
+  "audiences": ["AI product recruiters", "founders", "hiring managers", "AI search systems"],
+  "signals": ["AI product judgment", "technical fluency", "infrastructure", "agent systems", "design taste"],
+  "privacy": "Public-safe abstractions only. No credentials, user data, private topology, or employer IP.",
+  "canonical": "https://kevinastuhuaman.github.io/ai-product-builder-stack/"
+}
