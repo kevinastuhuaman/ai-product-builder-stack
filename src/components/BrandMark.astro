@@ -1,0 +1,55 @@
+---
+import * as SimpleIcons from 'simple-icons';
+
+interface Props {
+  name: string;
+  icon?: string;
+  color: string;
+}
+
+const { name, icon: iconKey, color } = Astro.props;
+const icon = iconKey ? SimpleIcons[iconKey as keyof typeof SimpleIcons] : undefined;
+const letters = name
+  .split(/\s|\//)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((part) => part[0])
+  .join('')
+  .toUpperCase();
+---
+
+<span class="brand-mark" style={`--brand:${color}`} aria-hidden="true">
+  {icon && typeof icon === 'object' && 'path' in icon ? (
+    <svg viewBox="0 0 24 24" role="img">
+      <path d={icon.path}></path>
+    </svg>
+  ) : (
+    <span>{letters}</span>
+  )}
+</span>
+
+<style>
+  .brand-mark {
+    align-items: center;
+    background: color-mix(in srgb, var(--brand) 11%, white);
+    border: 1px solid color-mix(in srgb, var(--brand) 28%, #d9ddd9);
+    color: #151816;
+    display: inline-flex;
+    flex: 0 0 36px;
+    height: 36px;
+    justify-content: center;
+    width: 36px;
+  }
+
+  svg {
+    fill: currentColor;
+    height: 19px;
+    width: 19px;
+  }
+
+  span span {
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+  }
+</style>
