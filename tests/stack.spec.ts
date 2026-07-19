@@ -71,3 +71,33 @@ test('does not overflow the viewport', async ({ page }) => {
   const dimensions = await page.evaluate(() => ({ width: document.documentElement.scrollWidth, viewport: window.innerWidth }));
   expect(dimensions.width).toBeLessThanOrEqual(dimensions.viewport);
 });
+
+test('keeps every evidence-state explanation readable on a phone', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'Mobile geometry regression');
+  await page.goto('./');
+
+  const legend = page.locator('.legend');
+  await expect(legend).toHaveCSS('grid-template-columns', /354px/);
+  const entries = legend.locator(':scope > div');
+  await expect(entries).toHaveCount(4);
+
+  const geometry = await entries.evaluateAll((items) => items.map((item) => {
+    const itemRect = item.getBoundingClientRect();
+    const description = item.querySelector('span:last-child');
+    const descriptionRect = description?.getBoundingClientRect();
+    return {
+      itemLeft: Math.round(itemRect.left),
+      itemRight: Math.round(itemRect.right),
+      descriptionLeft: Math.round(descriptionRect?.left ?? 0),
+      descriptionRight: Math.round(descriptionRect?.right ?? 0),
+      scrollWidth: description?.scrollWidth ?? 0,
+      clientWidth: description?.clientWidth ?? 0,
+    };
+  }));
+
+  for (const entry of geometry) {
+    expect(entry.descriptionLeft).toBeGreaterThanOrEqual(entry.itemLeft);
+    expect(entry.descriptionRight).toBeLessThanOrEqual(entry.itemRight);
+    expect(entry.scrollWidth).toBeLessThanOrEqual(entry.clientWidth);
+  }
+});

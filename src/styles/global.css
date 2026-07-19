@@ -401,6 +401,22 @@ dialog h2 { font-size: 30px; margin: 0; }
   dialog { padding: 30px 24px; }
 }
 
+@media (max-width: 480px) {
+  .legend { grid-template-columns: 1fr; }
+  .legend > div,
+  .legend > div + div,
+  .legend > div:nth-child(3) {
+    min-width: 0;
+    padding: 16px 0;
+    border-left: 0;
+  }
+
+  .legend > div > span:last-child {
+    min-width: 0;
+    font-size: 12px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
