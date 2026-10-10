@@ -354,7 +354,8 @@ const projectJson = {
         document.querySelector('#dialog-projects').innerHTML = projectLabels.map((label) => `<span>${label}</span>`).join('');
         document.querySelector('#dialog-link').href = tool.url;
         const card = cards.find((entry) => entry.dataset.toolId === toolId);
-        document.querySelector('#dialog-mark').replaceChildren(card.querySelector('.brand-mark').cloneNode(true));
+        const mark = card?.querySelector('.brand-mark');
+        document.querySelector('#dialog-mark').replaceChildren(...(mark ? [mark.cloneNode(true)] : []));
         document.querySelector('#dialog-mark').style.setProperty('--dialog-brand', tool.color);
         dialog.showModal();
       };
