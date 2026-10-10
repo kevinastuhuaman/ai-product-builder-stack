@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-10T07:43:44.055Z",
+  "capturedAt": "2026-10-10T07:51:03.225Z",
   "browser": "149.0.7827.55",
   "versions": [
     {
@@ -8,7 +8,7 @@
     },
     {
       "id": "after",
-      "head": "51b40a08c80aad96059bdce84e395b50e2a1482d"
+      "head": "d91e970e93ceee35d1b6d9b418cf3431fd75b48b"
     }
   ],
   "captures": [
