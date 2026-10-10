@@ -101,3 +101,15 @@ test('keeps every evidence-state explanation readable on a phone', async ({ page
     expect(entry.scrollWidth).toBeLessThanOrEqual(entry.clientWidth);
   }
 });
+
+test('key vendor logos load under the GitHub Pages base path and carry into evidence details', async ({page})=>{
+  await page.goto('./');
+  for(const id of ['openai','langfuse','posthog','azure','playwright','bedrock','vapi']) {
+    const card=page.locator(`[data-tool-id="${id}"]`);await card.scrollIntoViewIfNeeded();
+    const mark=card.locator('.brand-mark');await expect(mark).toHaveAttribute('data-mark-kind','brand');
+    await expect(mark.locator('img,svg')).toHaveCount(1);
+    if(await mark.locator('img').count()) await expect.poll(()=>mark.locator('img').evaluate(i=>i instanceof HTMLImageElement && i.complete && i.naturalWidth>0)).toBe(true);
+    await card.click();await expect(page.locator('#dialog-mark .brand-mark')).toHaveAttribute('data-mark-kind','brand');await page.keyboard.press('Escape');
+  }
+  await expect(page.locator('[data-tool-id="human-approval"] .brand-mark')).toHaveAttribute('data-mark-kind','concept');
+});

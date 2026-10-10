@@ -1,0 +1,78 @@
+[
+  {
+    "file": "azure.svg",
+    "source": "https://github.com/kevinastuhuaman/recruiting-portfolio/blob/1554043372f8c6ffd2e74005ab3a7549dfb5204c/site-public/assets/logos/azure.svg"
+  },
+  {
+    "file": "amazonwebservices.svg",
+    "source": "https://github.com/kevinastuhuaman/recruiting-portfolio/blob/1554043372f8c6ffd2e74005ab3a7549dfb5204c/site-public/assets/logos/amazonwebservices.svg"
+  },
+  {
+    "file": "playwright.svg",
+    "source": "https://github.com/kevinastuhuaman/recruiting-portfolio/blob/1554043372f8c6ffd2e74005ab3a7549dfb5204c/site-public/assets/logos/playwright.svg"
+  },
+  {
+    "file": "conductor.png",
+    "source": "https://github.com/kevinastuhuaman/recruiting-portfolio/blob/1554043372f8c6ffd2e74005ab3a7549dfb5204c/site-public/assets/logos/conductor.png"
+  },
+  {
+    "file": "langfuse.svg",
+    "source": "https://github.com/lobehub/lobe-icons/blob/c385b2b8d1f9e19aa86e628d4e23c91ee1111a47/packages/static-svg/icons/langfuse.svg",
+    "license": "MIT"
+  },
+  {
+    "file": "bedrock.svg",
+    "source": "https://github.com/lobehub/lobe-icons/blob/c385b2b8d1f9e19aa86e628d4e23c91ee1111a47/packages/static-svg/icons/bedrock.svg",
+    "license": "MIT"
+  },
+  {
+    "file": "llamaindex.svg",
+    "source": "https://github.com/lobehub/lobe-icons/blob/c385b2b8d1f9e19aa86e628d4e23c91ee1111a47/packages/static-svg/icons/llamaindex.svg",
+    "license": "MIT"
+  },
+  {
+    "file": "exa.svg",
+    "source": "https://github.com/lobehub/lobe-icons/blob/c385b2b8d1f9e19aa86e628d4e23c91ee1111a47/packages/static-svg/icons/exa.svg",
+    "license": "MIT"
+  },
+  {
+    "file": "tavily.svg",
+    "source": "https://github.com/lobehub/lobe-icons/blob/c385b2b8d1f9e19aa86e628d4e23c91ee1111a47/packages/static-svg/icons/tavily.svg",
+    "license": "MIT"
+  },
+  {
+    "file": "hume-ai.svg",
+    "source": "https://github.com/pheralb/svgl/blob/f9b726cee1d1f3c697a18c880185e89d9a55bb70/static/library/hume-ai.svg",
+    "license": "MIT"
+  },
+  {
+    "file": "remotion.svg",
+    "source": "https://github.com/pheralb/svgl/blob/f9b726cee1d1f3c697a18c880185e89d9a55bb70/static/library/remotion.svg",
+    "license": "MIT"
+  },
+  {
+    "file": "twilio.svg",
+    "source": "https://github.com/pheralb/svgl/blob/f9b726cee1d1f3c697a18c880185e89d9a55bb70/static/library/twilio.svg",
+    "license": "MIT"
+  },
+  {
+    "file": "vapi-icon.svg",
+    "source": "https://github.com/gilbarbara/logos/blob/37a6b807fd71c622efea27a9309b5d4edc792969/logos/vapi-icon.svg",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "gatus.svg",
+    "source": "https://github.com/TwiN/gatus/blob/c9aa339b66ddaa00c9e6f40b7ba2f34fd60bb48b/web/app/src/assets/logo.svg",
+    "license": "Apache-2.0"
+  },
+  {
+    "file": "healthchecks.svg",
+    "source": "https://github.com/healthchecks/healthchecks/blob/efcc84b6a49f087445a118ccb05186bfb5c33082/static/img/favicon.svg",
+    "license": "BSD-3-Clause"
+  },
+  {
+    "file": "openai.svg",
+    "source": "https://github.com/lobehub/lobe-icons/blob/c385b2b8d1f9e19aa86e628d4e23c91ee1111a47/packages/static-svg/icons/openai.svg",
+    "license": "MIT"
+  }
+]

@@ -1,55 +1,36 @@
 ---
 import * as SimpleIcons from 'simple-icons';
+import { Blocks, GitBranch, Mic, Search, UserCheck } from '@lucide/astro';
 
-interface Props {
-  name: string;
-  icon?: string;
-  color: string;
-}
-
-const { name, icon: iconKey, color } = Astro.props;
+interface Props { id: string; name: string; icon?: string; color: string; }
+const { id, icon: iconKey, color } = Astro.props;
 const icon = iconKey ? SimpleIcons[iconKey as keyof typeof SimpleIcons] : undefined;
-const letters = name
-  .split(/\s|\//)
-  .filter(Boolean)
-  .slice(0, 2)
-  .map((part) => part[0])
-  .join('')
-  .toUpperCase();
+const assets: Record<string, string> = {
+  openai: 'openai.svg', 'computer-use': 'openai.svg', whisper: 'openai.svg',
+  bedrock: 'bedrock.svg', langfuse: 'langfuse.svg', llamaindex: 'llamaindex.svg',
+  exa: 'exa.svg', tavily: 'tavily.svg', playwright: 'playwright.svg',
+  azure: 'azure.svg', 'azure-openai': 'azure.svg', 'azure-search': 'azure.svg',
+  'azure-app-service': 'azure.svg', 'azure-key-vault': 'azure.svg',
+  'application-insights': 'azure.svg', 'log-analytics': 'azure.svg', 'azure-realtime': 'azure.svg',
+  'aws-lightsail': 'amazonwebservices.svg', 'aws-rds': 'amazonwebservices.svg',
+  'aws-ses': 'amazonwebservices.svg', cloudwatch: 'amazonwebservices.svg',
+  gatus: 'gatus.svg', healthchecks: 'healthchecks.svg', hume: 'hume-ai.svg',
+  twilio: 'twilio.svg', vapi: 'vapi-icon.svg', conductor: 'conductor.png', remotion: 'remotion.svg',
+};
+// Product families use their parent brand. Concepts and unavailable vendor marks
+// receive a deliberate line icon instead of an invented two-letter logo.
+const illustrations = { 'agent-harness': GitBranch, 'human-approval': UserCheck, fireflies: Mic, parallel: Search, clay: Blocks };
+const Illustration = illustrations[id as keyof typeof illustrations] ?? Blocks;
+const asset = assets[id];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const hasIcon = icon && typeof icon === 'object' && 'path' in icon;
 ---
-
-<span class="brand-mark" style={`--brand:${color}`} aria-hidden="true">
-  {icon && typeof icon === 'object' && 'path' in icon ? (
-    <svg viewBox="0 0 24 24" role="img">
-      <path d={icon.path}></path>
-    </svg>
-  ) : (
-    <span>{letters}</span>
-  )}
+<span class="brand-mark" style={`--brand:${color}`} aria-hidden="true" data-mark-kind={asset || hasIcon ? 'brand' : 'concept'}>
+  {asset ? <img src={`${base}/assets/brands/${asset}`} alt="" width="24" height="24" loading="lazy" decoding="async" /> : hasIcon ? <svg viewBox="0 0 24 24"><path d={icon.path} /></svg> : <Illustration size={21} stroke-width={1.8} />}
 </span>
-
 <style>
-  .brand-mark {
-    align-items: center;
-    background: color-mix(in srgb, var(--brand) 11%, white);
-    border: 1px solid color-mix(in srgb, var(--brand) 28%, #d9ddd9);
-    color: #151816;
-    display: inline-flex;
-    flex: 0 0 36px;
-    height: 36px;
-    justify-content: center;
-    width: 36px;
-  }
-
-  svg {
-    fill: currentColor;
-    height: 19px;
-    width: 19px;
-  }
-
-  span span {
-    font-size: 10px;
-    font-weight: 800;
-    line-height: 1;
-  }
+  .brand-mark { align-items:center; background:color-mix(in srgb,var(--brand) 7%,white); border:1px solid color-mix(in srgb,var(--brand) 22%,#d9ddd9); color:#151816; display:inline-flex; flex:0 0 40px; height:40px; justify-content:center; width:40px; }
+  img { display:block; object-fit:contain; width:24px; height:24px; }
+  svg { fill:currentColor; height:21px; width:21px; }
+  .brand-mark[data-mark-kind=concept] :global(svg) { fill:none; stroke:currentColor; }
 </style>

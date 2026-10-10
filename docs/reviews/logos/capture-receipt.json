@@ -1,0 +1,56 @@
+{
+  "capturedAt": "2026-10-10T07:51:03.225Z",
+  "browser": "149.0.7827.55",
+  "versions": [
+    {
+      "id": "before",
+      "head": "eda80a708d1812a8fbf612e58e243956579a1b8b"
+    },
+    {
+      "id": "after",
+      "head": "d91e970e93ceee35d1b6d9b418cf3431fd75b48b"
+    }
+  ],
+  "captures": [
+    {
+      "file": "before-1440-models.png",
+      "width": 1440,
+      "selector": ".category-section:first-child"
+    },
+    {
+      "file": "before-1440-observability.png",
+      "width": 1440,
+      "selector": ".category-section:nth-child(5)"
+    },
+    {
+      "file": "after-1440-models.png",
+      "width": 1440,
+      "selector": ".category-section:first-child"
+    },
+    {
+      "file": "after-1440-observability.png",
+      "width": 1440,
+      "selector": ".category-section:nth-child(5)"
+    },
+    {
+      "file": "before-390-models.png",
+      "width": 390,
+      "selector": ".category-section:first-child"
+    },
+    {
+      "file": "before-390-observability.png",
+      "width": 390,
+      "selector": ".category-section:nth-child(5)"
+    },
+    {
+      "file": "after-390-models.png",
+      "width": 390,
+      "selector": ".category-section:first-child"
+    },
+    {
+      "file": "after-390-observability.png",
+      "width": 390,
+      "selector": ".category-section:nth-child(5)"
+    }
+  ]
+}
