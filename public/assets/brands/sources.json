@@ -1,9 +1,5 @@
 [
   {
-    "file": "openai.svg",
-    "source": "https://github.com/kevinastuhuaman/recruiting-portfolio/blob/1554043372f8c6ffd2e74005ab3a7549dfb5204c/site-public/assets/logos/openai.svg"
-  },
-  {
     "file": "azure.svg",
     "source": "https://github.com/kevinastuhuaman/recruiting-portfolio/blob/1554043372f8c6ffd2e74005ab3a7549dfb5204c/site-public/assets/logos/azure.svg"
   },
@@ -73,5 +69,10 @@
     "file": "healthchecks.svg",
     "source": "https://github.com/healthchecks/healthchecks/blob/efcc84b6a49f087445a118ccb05186bfb5c33082/static/img/favicon.svg",
     "license": "BSD-3-Clause"
+  },
+  {
+    "file": "openai.svg",
+    "source": "https://github.com/lobehub/lobe-icons/blob/c385b2b8d1f9e19aa86e628d4e23c91ee1111a47/packages/static-svg/icons/openai.svg",
+    "license": "MIT"
   }
 ]
