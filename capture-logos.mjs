@@ -1,8 +1,14 @@
 import {chromium} from '@playwright/test';
 import{mkdir,readFile,writeFile}from'node:fs/promises';import{execFileSync}from'node:child_process';
 const root=process.cwd();const output=root+'/docs/reviews/logos';await mkdir(output,{recursive:true});
-const versions=[{id:'before',url:'http://127.0.0.1:4176/ai-product-builder-stack/',checkout:'/workspace/ai-product-builder-stack-logos-before'},{id:'after',url:'http://127.0.0.1:4177/ai-product-builder-stack/',checkout:root}];
-const browser=await chromium.launch();const receipt={capturedAt:new Date().toISOString(),browser:browser.version(),versions:versions.map(v=>({id:v.id,head:execFileSync('git',['rev-parse','HEAD'],{cwd:v.checkout,encoding:'utf8'}).trim()})),captures:[]};
+const versions=[{id:'before',url:process.env.STACK_BEFORE_URL??'http://127.0.0.1:4176/ai-product-builder-stack/',checkout:process.env.STACK_BEFORE_CHECKOUT??'/workspace/ai-product-builder-stack-logos-before'},{id:'after',url:process.env.STACK_AFTER_URL??'http://127.0.0.1:4177/ai-product-builder-stack/',checkout:root}];
+// Validate source revisions before allocating a browser. Unknown revisions cannot
+// produce a valid source comparison receipt.
+const sourceVersions=versions.map(v=>{
+ try{return {id:v.id,head:execFileSync('git',['rev-parse','HEAD'],{cwd:v.checkout,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()};}
+ catch{throw new Error(`Cannot read ${v.id} checkout at ${v.checkout}. Set STACK_BEFORE_CHECKOUT to the built baseline checkout.`);}
+});
+const browser=await chromium.launch();const receipt={capturedAt:new Date().toISOString(),browser:browser.version(),versions:sourceVersions,captures:[]};
 try{
  for(const width of [1440,390]){
   for(const v of versions){const page=await browser.newPage({viewport:{width,height:1000},deviceScaleFactor:1});await page.emulateMedia({reducedMotion:'reduce'});await page.goto(v.url,{waitUntil:'networkidle'});
