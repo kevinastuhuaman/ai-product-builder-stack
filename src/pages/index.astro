@@ -177,7 +177,7 @@ const projectJson = {
                         data-search={`${tool.name} ${tool.summary} ${tool.proof}`.toLowerCase()}
                         aria-haspopup="dialog"
                       >
-                        <BrandMark name={tool.name} icon={tool.icon} color={tool.color} />
+                        <BrandMark id={tool.id} name={tool.name} icon={tool.icon} color={tool.color} />
                         <span class="tool-card-copy">
                           <span class="tool-name">{tool.name}</span>
                           <span class="tool-summary">{tool.summary}</span>
@@ -353,7 +353,8 @@ const projectJson = {
         const projectLabels = tool.projects.map((id) => projectData.find((project) => project.id === id)?.label).filter(Boolean);
         document.querySelector('#dialog-projects').innerHTML = projectLabels.map((label) => `<span>${label}</span>`).join('');
         document.querySelector('#dialog-link').href = tool.url;
-        document.querySelector('#dialog-mark').textContent = tool.name.split(/\s|\//).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
+        const card = cards.find((entry) => entry.dataset.toolId === toolId);
+        document.querySelector('#dialog-mark').replaceChildren(card.querySelector('.brand-mark').cloneNode(true));
         document.querySelector('#dialog-mark').style.setProperty('--dialog-brand', tool.color);
         dialog.showModal();
       };
